@@ -1,6 +1,11 @@
 <?php
+    // Importation de la classe CustomTCPDF
+    //use CustomTCPDF;
+    //use esiee_2023_pdf_generator\esiee\pdf_generator\CustomTCPDF;
+    //include('vendor\esiee\pdf_generator\src\esiee\pdf_generator\CustomTCPDF.php');
+    include('vendor/esiee/pdf_generator/src/esiee/pdf_generator/CustomTCPDF.php');
 
-    /**
+/**
      * Méthode de création du PDF avec TCPDF
      * 
      * Paramètres :

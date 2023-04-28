@@ -1,12 +1,9 @@
 <?php
     //Liaison avec Composer
-    require 'vendor/autoload.php';
-
-    // Importation de la classe CustomTCPDF
-    require_once('controllers/CustomTCPDF.php');
+    include('vendor/autoload.php');
 
     // Importation de la méthode de création du PDF
-    require_once('controllers/pdf_generator_with_tcpdf.php');
+    include('pdf_generator_with_tcpdf.php');
 
     $pdf_createur = 'Mon créateur de PDF';
     $pdf_auteur = 'Moi-même';
@@ -68,6 +65,8 @@
             'texte' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
         ]
     ];
+
+    //$test = new CustomTCPDF();
 
     pdfGenerator($datas);
     
