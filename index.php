@@ -1,6 +1,6 @@
 <?php
-    // Importation de TCPDF
-    require_once('dependances/tcpdf/tcpdf.php');
+    //Liaison avec Composer
+    require 'vendor/autoload.php';
 
     // Importation de la classe CustomTCPDF
     require_once('controllers/CustomTCPDF.php');

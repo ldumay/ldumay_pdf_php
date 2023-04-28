@@ -1,0 +1,28 @@
+{
+  "name": "ldumay/ldumay_pdf_php",
+  "description": "ESIEE - 2023 - PDF - Générator",
+  "type": "project",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "Loïc DUMAY",
+      "email": "loic.dumay@edu.itescia.fr"
+    },
+    {
+      "name": "Emmanuel ROSE",
+      "email": "emmanuel.rose@edu.itescia.fr"
+    },
+    {
+      "name": "Maxence HENNEKEIN",
+      "email": "maxence.hennekein@edu.esiee-it.fr"
+    },
+    {
+      "name": "Zhihao CHEN",
+      "email": "zhihao.chen@edu.esiee-it.fr"
+    }
+  ],
+  "require": {
+    "esiee/pdf_generator": "dev-main",
+    "tecnickcom/tcpdf": "^6.6"
+  }
+}
