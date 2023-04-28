@@ -1,5 +1,9 @@
-.idea
+# IDEs
+.idea/
 
-/* Tout les fichiers du dossier TCPDF sauf : */
-/* tcpdf.php, tcpdf_autoconfig.php, tcpdf_config.php */
+# Composer
+vendor/
+
+# Tout les fichiers du dossier TCPDF sauf :
+# tcpdf.php, tcpdf_autoconfig.php, tcpdf_config.php
 dependances/TCPDF/
