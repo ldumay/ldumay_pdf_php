@@ -1,4 +1,5 @@
 <?php
+
     /**
      * Méthode de création du PDF avec TCPDF
      * 
@@ -26,7 +27,7 @@
      */
 
     function pdfGenerator($datas){
-        
+
         // Initialisation du PDF avec TCPDF
         $pdf = new CustomTCPDF(
             $datas['pdf_config_tcpdf']['orientation'], // Orientation
@@ -36,6 +37,8 @@
             $datas['pdf_config_tcpdf']['encoding'], // Permet de gérer les accents
             false // Permet de ne pas afficher les images
         );
+
+        $pdf->Header();
 
         // ---[ Configuration des informations du PDF ]---
         $pdf->SetCreator($datas['pdf_informations']['createur']);
