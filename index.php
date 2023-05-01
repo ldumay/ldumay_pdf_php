@@ -3,72 +3,82 @@
     include('vendor/autoload.php');
 
     // Importation de la méthode de création du PDF
-    include('pdf_generator_with_tcpdf.php');
+    include('vendor/esiee/pdf_generator/src/esiee/pdf_generator/PdfGenerator.php');
+    use pdf_generator\PdfGenerator;
 
-    $pdf_createur = 'Mon créateur de PDF';
-    $pdf_auteur = 'Moi-même';
-    $pdf_titre = 'Mon premier PDF avec TCPDF';
-    $pdf_sujet = 'Test - création - évènement - maître';
+    // Création du PDF
+    $pdfGenerator = new PdfGenerator();
 
-    $pdf_config_tcpdf_orientation = 'P';
-    $pdf_config_tcpdf_format = 'A4';
-    $pdf_config_tcpdf_encoding = 'UTF-8';
+    // Configuration des informations du PDF
+    $pdfGenerator->setPdfInformations(
+        'Mon créateur de PDF', // Créateur
+        'Moi-même', // Auteur
+        'Mon premier PDF avec TCPDF', // Titre
+        'Test - création - évènement - maître' // Sujet
+    );
 
-    $pdf_parametres_contenu_police = ['helvetica', '', 14];
-    $pdf_parametres_contenu_marges = [20, 20, 20, 20, true];
+    // Configuration de TCPDF du PDF
+    $pdfGenerator->setPdfConfigTcpdf(
+        'P', // Orientation
+        'mm', // Unité de mesure
+        'A4', // Format
+        'UTF-8' // Encodage
+    );
 
-    $pdf_parametres_contenu_header = [
-        'https://planet-vie.ens.fr/themes/custom/ens_bio/images/logo_bio.svg',
-        30,
-        $pdf_createur,
-        'https://planet-vie.ens.fr/'
-    ];
-    $pdf_parametres_contenu_bottom = [
+    // Activation des bordures et des images
+    $pdfGenerator->setPdfConfigTcpdfBorderAndImages(
+        true,
+        true
+    );
+
+    // Activation supplémentaires de TCPDF
+    $pdfGenerator->setPdfConfigTcpdfMore(
+        false, // Diskcache
+        false, //Pdfa
+        false //Pdfaauto
+    );
+
+    // Configuration du contenu de forme du PDF
+    $pdfGenerator->setPdfParametresContenuForme(
+        ['helvetica', '', 14], // Police
+        [20, 20, 20, 20, true] // Marges
+    );
+
+    // Configuration du contenu de fond du PDF
+    $pdfGenerator->setPdfParametresContenuFond(
+        [
+            'https://planet-vie.ens.fr/themes/custom/ens_bio/images/logo_bio.svg', // Logo
+            30, // Taille du logo
+            'ENS', // Créateur
+            'https://planet-vie.ens.fr/' // Lien du créateur
+        ],
+        [
             'https://planet-vie.ens.fr/themes/custom/ens_bio/images/logo_bio.svg',
             30,
-            $pdf_createur,
+            'ENS',
             'https://planet-vie.ens.fr/'
-        ];
-
-    $datas = [
-        'pdf_config_tcpdf' => [
-            'orientation' => $pdf_config_tcpdf_orientation,
-            'unit' => 'mm',
-            'format' => $pdf_config_tcpdf_format,
-            'unicode' => true,
-            'encoding' => $pdf_config_tcpdf_encoding,
-            'diskcache' => false,
-            'pdfa' => false,
-            'pdfaauto' => false
-        ],
-        'pdf_parametres' => [
-            'contenu' => [
-                'police' => $pdf_parametres_contenu_police,
-                'marges' => $pdf_parametres_contenu_marges
-            ],
-            'ensemble_pages' => [
-                'page_garde' => true,
-                'page_separation' => true,
-                'page_couvertures' => true,
-                'page_fin' => true,
-                'haut_page' => $pdf_parametres_contenu_header,
-                'pied_page' => $pdf_parametres_contenu_bottom
-            ]
-        ],
-        'pdf_informations' => [
-            'createur' => $pdf_createur,
-            'auteur' => $pdf_auteur,
-            'titre' => $pdf_titre,
-            'sujet' => $pdf_sujet
-        ],
-        'pdf_contenu' => [
-            'texte' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
         ]
-    ];
+    );
 
-    //$test = new CustomTCPDF();
+    // Configuration des pages de couvertures du PDF
+    $pdfGenerator->setPagesCouvertures(
+        true, // Page de garde
+        true, // Page de séparation
+        true, // Page de couverture
+        true // Page de fin
+    );
 
-    pdfGenerator($datas);
-    
-    print('<a href="mon_premier_pdf.pdf">PDF</a>');
+    // Configuration des pages du PDF
+    $pdfGenerator->setContenu(
+        [
+            'title' => 'Mon premier PDF avec TCPDF',
+            'sub_title' => 'Création d\'un PDF avec TCPDF',
+            'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+        ]
+    );
+
+    // Création du PDF
+    $pdfGenerator->generatePDF();
+
+    print('PDF créé avec succès !');
     
