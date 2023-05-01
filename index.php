@@ -71,9 +71,16 @@
     // Configuration des pages du PDF
     $pdfGenerator->setContenu(
         [
-            'title' => 'Mon premier PDF avec TCPDF',
-            'sub_title' => 'Création d\'un PDF avec TCPDF',
-            'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+            [
+                'title' => 'Mon premier PDF avec TCPDF',
+                'sub_title' => 'Création d\'un PDF avec TCPDF',
+                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+            ],
+            [
+                'title' => 'Mon premier PDF avec TCPDF',
+                'sub_title' => 'Création d\'un PDF avec TCPDF',
+                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+            ]
         ]
     );
 
