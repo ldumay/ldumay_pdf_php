@@ -17,6 +17,12 @@
         'Test - création - évènement - maître' // Sujet
     );
 
+    // Configuration du PDF
+    $pdfGenerator->setPdfConfig(
+        6, // Sauts de ligne
+        6 // Interlignes
+    );
+
     // Configuration de TCPDF du PDF
     $pdfGenerator->setPdfConfigTcpdf(
         'P', // Orientation
@@ -40,23 +46,23 @@
 
     // Configuration du contenu de forme du PDF
     $pdfGenerator->setPdfParametresContenuForme(
-        ['helvetica', '', 14], // Police
+        ['helvetica', '', 12], // Police
         [20, 20, 20, 20, true] // Marges
     );
 
     // Configuration du contenu de fond du PDF
     $pdfGenerator->setPdfParametresContenuFond(
         [
-            'https://planet-vie.ens.fr/themes/custom/ens_bio/images/logo_bio.svg', // Logo
+            'https://www.sorbonne.fr/wp-content/uploads/ENS_Logo_TL.jpg', // Logo
             30, // Taille du logo
             'ENS', // Créateur
             'https://planet-vie.ens.fr/' // Lien du créateur
         ],
         [
-            'https://planet-vie.ens.fr/themes/custom/ens_bio/images/logo_bio.svg',
-            30,
-            'ENS',
-            'https://planet-vie.ens.fr/'
+            'https://www.sorbonne.fr/wp-content/uploads/ENS_Logo_TL.jpg', // Logo
+            30, // Taille du logo
+            'ENS', // Créateur
+            'https://planet-vie.ens.fr/' // Lien du créateur
         ]
     );
 
@@ -74,12 +80,12 @@
             [
                 'title' => 'Mon premier PDF avec TCPDF',
                 'sub_title' => 'Création d\'un PDF avec TCPDF',
-                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF !'
             ],
             [
                 'title' => 'Mon premier PDF avec TCPDF',
                 'sub_title' => 'Création d\'un PDF avec TCPDF',
-                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF!'
+                'text' => 'Bonjour, voici mon premier PDF créé avec TCPDF !'
             ]
         ]
     );
