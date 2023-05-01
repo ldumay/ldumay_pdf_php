@@ -3,9 +3,11 @@
     //use CustomTCPDF;
     //use esiee_2023_pdf_generator\esiee\pdf_generator\CustomTCPDF;
     //include('vendor\esiee\pdf_generator\src\esiee\pdf_generator\CustomTCPDF.php');
-    include('vendor/esiee/pdf_generator/src/esiee/pdf_generator/CustomTCPDF.php');
 
-/**
+    //include('vendor/esiee/pdf_generator/src/esiee/pdf_generator/CustomTCPDF.php');
+    //include('CleanString.php');
+
+    /**
      * Méthode de création du PDF avec TCPDF
      * 
      * Paramètres :
@@ -91,20 +93,6 @@
 
         $pdf->Cell(0, 10, $datas['pdf_contenu']['texte'], 0, 1);
 
-        // ---[ Préparation du titre du PDF ]---
-        /**
-         * Remplacement des espaces, des accents et des caractères spéciaux
-         * par des underscores.
-         */
-        $titre = $datas['pdf_informations']['titre'];
-        $occurences = [' ', 'é', 'è', 'ê', 'ë', 'à', 'â', 'ä', 'ù', 'û', 'ü', 'ô', 'ö', 'î', 'ï', 'ç', '!', '?', '.', ',', ';', ':', '/', '\\', '(', ')', '[', ']', '{', '}', '<', '>', '"', "'", '°', '²', '³', '€', '$', '£', '¤', 'µ', '§', '°', '²', '³', '€', '$', '£', '¤', 'µ', '§'];
-        $remplacement = ['_', 'e', 'e', 'e', 'e', 'a', 'a', 'a', 'u', 'u', 'u', 'o', 'o', 'i', 'i', 'c'];
-        foreach ($occurences as $occurence) {
-            $titre = str_replace($occurence, $remplacement[$key], $titre);
-            //-
-            //$newTitre = str_replace(' ', '_', $titre);
-        }
-
         // ---[ Configuration du Haut et du Bas de page ]---
         /**
          * Configuration du Haut de page
@@ -125,6 +113,10 @@
             $datas['pdf_parametres']['ensemble_pages']['bas_page']['sous_titre'] // Sous-titre
         );
 
+        // ---[ Préparation du titre du PDF ]---
+        $cleanString = new CleanString();
+        $titrePDF = $cleanString->CleaningStringForFileTitle($datas['pdf_informations']['titre']);
+
         // ---[ Génération du PDF ]---
-        $pdf->Output($titre.'.pdf', 'D');
+        $pdf->Output($titrePDF.'.pdf', 'D');
     }
